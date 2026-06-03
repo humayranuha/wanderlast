@@ -55,12 +55,12 @@ const Navbar = () => {
                         >
                             My Bookings
                         </Link>
-                        <Link 
+                        {/* <Link 
                             href='/admin' 
                             className='text-gray-700 hover:text-cyan-600 font-medium transition-colors duration-200'
                         >
                             Admin
-                        </Link>
+                        </Link> */}
                     </div>
 
                     {/* Logo Section */}
