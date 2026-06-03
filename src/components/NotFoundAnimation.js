@@ -1,0 +1,14 @@
+'use client';
+
+import { DotLottieReact } from '@lottiefiles/dotlottie-react';
+
+export default function NotFoundAnimation() {
+    return (
+        <DotLottieReact
+            src="/animations/not-found.lottie"
+            autoplay
+            loop
+            style={{ width: 350, height: 350 }}
+        />
+    );
+}
