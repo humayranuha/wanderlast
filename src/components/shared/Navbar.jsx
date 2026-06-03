@@ -160,14 +160,14 @@ const Navbar = () => {
                         {/* Mobile Auth Section */}
                         {isSignedIn ? (
                             <>
-                                <Link 
+                                {/* <Link 
                                     href='/profile' 
                                     className='flex items-center gap-2 px-4 py-2 text-gray-700 hover:text-cyan-600 hover:bg-gray-50 transition-colors duration-200'
                                     onClick={() => setIsMenuOpen(false)}
                                 >
                                     <IoPerson className="text-lg" />
                                     <span>Profile</span>
-                                </Link>
+                                </Link> */}
                                 
                                 {/* Mobile UserButton (simplified) */}
                                 <div className="px-4 py-2">
