@@ -2,7 +2,7 @@
 
 import React, { useState } from 'react';
 import Link from 'next/link';
-import logo from '../../public/assets/Wanderlast.png';
+import logo from '../../../public/assets/Wanderlast.png';
 import Image from 'next/image';
 import { IoPerson, IoMenu, IoClose } from 'react-icons/io5';
 
