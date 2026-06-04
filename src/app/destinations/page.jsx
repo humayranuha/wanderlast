@@ -1,5 +1,6 @@
 import React from 'react';
 import Image from 'next/image';
+import Link from 'next/link';
 
 const DestinationsPage = async () => {
     const res = await fetch('http://localhost:5000/destinations', {
@@ -107,9 +108,12 @@ const DestinationsPage = async () => {
                                         {destination.description}
                                     </p>
 
-                                    <button className="w-full bg-linear-to-r from-cyan-600 to-cyan-500 text-white font-semibold py-2 px-4 rounded-xl hover:shadow-lg transform hover:scale-[1.02] transition-all duration-300">
-                                        View Details
-                                    </button>
+                                    <Link 
+                                        href={`/destinations/${destination._id}`} 
+                                        className="w-full bg-linear-to-r from-cyan-600 to-cyan-500 text-white font-semibold py-2 px-4 rounded-xl hover:shadow-lg transform hover:scale-[1.02] transition-all duration-300 text-center block"
+                                    >
+                                        Book now!!!
+                                    </Link>
                                 </div>
                             </div>
                         ))}
