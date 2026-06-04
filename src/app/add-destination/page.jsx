@@ -1,25 +1,43 @@
 'use client';
 import { FieldError, Input, Label, TextField, Select, TextArea, ListBox, Button } from '@heroui/react';
-import React from 'react';
+import React, { useState } from 'react';
 
 const AddDestinationPage = () => {
+    const [isSubmitting, setIsSubmitting] = useState(false);
+    const [message, setMessage] = useState('');
+
     const onSubmit = async (e) => {
         e.preventDefault();
+        setIsSubmitting(true);
+        setMessage('');
 
         const formData = new FormData(e.currentTarget);
         const data = Object.fromEntries(formData.entries());
         console.log('Form Data:', data);
 
-        const res = await fetch('http://localhost:5000/destinations', {
-            method: 'POST',
-            hedears: {
-                'content-type': 'application/json'
-            },
-            body: JSON.stringify(data)
-        })
+        try {
+            const res = await fetch('http://localhost:5000/destinations', {
+                method: 'POST',
+                headers: {  // Fixed typo: was 'hedears'
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(data)
+            });
 
-        const destination = await res.json();
-        console.log('Created Destination:', destination);
+            if (!res.ok) {
+                throw new Error(`HTTP error! status: ${res.status}`);
+            }
+
+            const destination = await res.json();
+            console.log('Created Destination:', destination);
+            setMessage('Destination added successfully!');
+            e.target.reset(); // Clear form on success
+        } catch (error) {
+            console.error('Error:', error);
+            setMessage(`Error: ${error.message}`);
+        } finally {
+            setIsSubmitting(false);
+        }
     }
 
     return (
@@ -57,7 +75,7 @@ const AddDestinationPage = () => {
                             <FieldError />
                         </TextField>
 
-                        {/* Category - Updated Select Component */}
+                        {/* Category */}
                         <div>
                             <Select
                                 name="category"
@@ -134,7 +152,7 @@ const AddDestinationPage = () => {
                             </TextField>
                         </div>
 
-                        {/* Image URL - Removed preview */}
+                        {/* Image URL */}
                         <div className="md:col-span-2">
                             <TextField name="imageUrl" isRequired>
                                 <Label className="text-gray-700 font-semibold">Image URL</Label>
@@ -160,14 +178,22 @@ const AddDestinationPage = () => {
                         </div>
                     </div>
 
+                    {/* Message Display */}
+                    {message && (
+                        <div className={`p-3 rounded-lg text-center ${message.includes('success') ? 'bg-green-100 text-green-700' : 'bg-red-100 text-red-700'}`}>
+                            {message}
+                        </div>
+                    )}
+
                     {/* Buttons */}
                     <div className="pt-4">
                         <Button
                             type="submit"
                             variant="outline"
+                            isLoading={isSubmitting}
                             className="rounded-xl w-full bg-linear-to-r from-cyan-600 to-cyan-500 text-white font-semibold py-6 text-lg shadow-lg hover:shadow-xl transform hover:scale-[1.02] transition-all duration-300 border-0"
                         >
-                            Add Destination
+                            {isSubmitting ? "Adding Destination..." : "Add Destination"}
                         </Button>
                     </div>
                 </form>
