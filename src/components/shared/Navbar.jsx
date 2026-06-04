@@ -55,6 +55,12 @@ const Navbar = () => {
                         >
                             My Bookings
                         </Link>
+                        <Link 
+                            href='/add-destination' 
+                            className='text-gray-700 hover:text-cyan-600 font-medium transition-colors duration-200'
+                        >
+                            Add Destination
+                        </Link>
                         {/* <Link 
                             href='/admin' 
                             className='text-gray-700 hover:text-cyan-600 font-medium transition-colors duration-200'
@@ -147,12 +153,19 @@ const Navbar = () => {
                             My Bookings
                         </Link>
                         <Link 
+                            href='/add-destination' 
+                            className='block px-4 py-2 text-gray-700 hover:text-cyan-600 hover:bg-gray-50 transition-colors duration-200'
+                            onClick={() => setIsMenuOpen(false)}
+                        >
+                            Add Destination
+                        </Link>
+                        {/* <Link 
                             href='/admin' 
                             className='block px-4 py-2 text-gray-700 hover:text-cyan-600 hover:bg-gray-50 transition-colors duration-200'
                             onClick={() => setIsMenuOpen(false)}
                         >
                             Admin
-                        </Link>
+                        </Link> */}
 
                         {/* Divider */}
                         <div className="border-t border-gray-200 my-2"></div>
